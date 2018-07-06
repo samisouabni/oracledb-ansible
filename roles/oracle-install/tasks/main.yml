@@ -20,7 +20,7 @@
 
 # ==> extract files
 - name: Extract installation files
-  command: 'unzip {{ installation_folder }}/{{ item }} -d {{ installation_folder }}/'
+  command: 'unzip -o {{ installation_folder }}/{{ item }} -d {{ installation_folder }}/'
   with_items:
    - linuxamd64_12102_database_1of2.zip
    - linuxamd64_12102_database_2of2.zip
