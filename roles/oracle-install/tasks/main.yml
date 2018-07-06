@@ -6,15 +6,21 @@
 
 - name: Create folder for installation files
   file: state=directory path={{ installation_folder }}
-# ==> Copy installer files
-- name: Copy installer files
-  copy: src={{ item }} dest='{{ installation_folder }}/'
-  with_items: '{{ installer_archives }}'
+
+- name: download file from a file path
+  get_url:
+    url: "https://s3.eu-central-1.amazonaws.com/dog-oracledb-files/linuxamd64_12102_database_1of2.zip"
+    dest: "{{ installation_folder }}/linuxamd64_12102_database_1of2.zip"
+
+- name: download file from a file path
+  get_url:
+    url: "https://s3.eu-central-1.amazonaws.com/dog-oracledb-files/linuxamd64_12102_database_2of2.zip"
+    dest: "{{ installation_folder }}/linuxamd64_12102_database_2of2.zip"
 
 # ==> extract files
 - name: Extract installation files
   command: 'unzip {{ installation_folder }}/{{ item }} -d {{ installation_folder }}/'
-  with_items: '{{ installer_archives }}'
+  with_items: ['linuxamd64_12102_database_1of2.zip','linuxamd64_12102_database_2of2.zip']
 
 # ==> generate response file
 - name: Generate the response file for software only installation
