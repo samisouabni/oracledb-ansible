@@ -7,13 +7,16 @@
 - name: Create folder for installation files
   file: state=directory path={{ installation_folder }}
 
-# ==> Copy installer files
-- name: Copy installer files
-  copy: src=/tmp/{{ item }} dest='{{ installation_folder }}/'
-  remote_src: true
-  with_items:
-   - linuxamd64_12102_database_1of2.zip
-   - linuxamd64_12102_database_2of2.zip
+- name: download file from a file path
+  get_url:
+    url: "https://s3.eu-central-1.amazonaws.com/dog-oracledb-files/linuxamd64_12102_database_1of2.zip"
+    dest: "{{ installation_folder }}/linuxamd64_12102_database_1of2.zip"
+  become_user: root
+- name: download file from a file path
+  get_url:
+    url: "https://s3.eu-central-1.amazonaws.com/dog-oracledb-files/linuxamd64_12102_database_2of2.zip"
+    dest: "{{ installation_folder }}/linuxamd64_12102_database_2of2.zip"
+  become_user: root
 
 # ==> extract files
 - name: Extract installation files
