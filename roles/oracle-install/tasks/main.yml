@@ -7,16 +7,6 @@
 - name: Create folder for installation files
   file: state=directory path={{ installation_folder }}
 
-- name: download file from a file path
-  get_url:
-    url: "https://s3.eu-central-1.amazonaws.com/dog-oracledb-files/linuxamd64_12102_database_1of2.zip"
-    dest: "../files/linuxamd64_12102_database_1of2.zip"
-
-- name: download file from a file path
-  get_url:
-    url: "https://s3.eu-central-1.amazonaws.com/dog-oracledb-files/linuxamd64_12102_database_2of2.zip"
-    dest: "../files/linuxamd64_12102_database_2of2.zip"
-
 # ==> Copy installer files
 - name: Copy installer files
   copy: src={{ item }} dest='{{ installation_folder }}/'
