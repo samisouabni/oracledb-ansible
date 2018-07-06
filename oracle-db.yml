@@ -22,11 +22,3 @@
         regexp='^127\.0\.0\.1'
         line='127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4'
         owner=root group=root mode=0644
-    - name: download file from a file path
-      get_url:
-        url: "https://s3.eu-central-1.amazonaws.com/dog-oracledb-files/linuxamd64_12102_database_1of2.zip"
-        dest: /tmp/linuxamd64_12102_database_1of2.zip
-    - name: download file from a file path
-      get_url:
-        url: "https://s3.eu-central-1.amazonaws.com/dog-oracledb-files/linuxamd64_12102_database_2of2.zip"
-        dest: /tmp/linuxamd64_12102_database_2of2.zip
