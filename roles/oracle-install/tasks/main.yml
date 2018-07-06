@@ -10,7 +10,7 @@
 # ==> Copy installer files
 - name: Copy installer files
   copy: src=/tmp/{{ item }} dest='{{ installation_folder }}/'
-  become_user: root
+  remote_src: true
   with_items:
    - linuxamd64_12102_database_1of2.zip
    - linuxamd64_12102_database_2of2.zip
